@@ -1,0 +1,24 @@
+.popup__button-confirm {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  height: 50px;
+  background-color: #000;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-top: 38px;
+}
+
+.popup__button-confirm:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 520px) {
+  .popup__button-confirm {
+    font-size: 14px;
+    height: 46px;
+  }
+}

@@ -1,0 +1,6 @@
+.popup__tooltip-image {
+    margin: 26px auto 32px;
+    background-image: url(../../../images/popup/__success.svg);
+    width: 120px;
+    height: 120px;
+}

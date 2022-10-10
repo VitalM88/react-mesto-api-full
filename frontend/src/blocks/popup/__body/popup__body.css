@@ -1,0 +1,14 @@
+.popup__body {
+  position: relative;
+  min-height: 330px;
+  max-width: 430px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 520px) {
+  .popup__body {
+    min-height: 322px;
+    max-width: 282px;
+  }
+}
