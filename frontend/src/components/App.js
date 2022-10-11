@@ -37,7 +37,7 @@ function App() {
 
   React.useEffect(() => {
     handleCheckToken();
-  }, [isLoggedIn]);
+  }, []);
 
   React.useEffect(() => {
     if (isLoggedIn) {
@@ -150,7 +150,6 @@ function App() {
           setUserEmail(res.email);
           setIsLoggedIn(true);
           navigate("/");
-          setToken(res.token);
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
