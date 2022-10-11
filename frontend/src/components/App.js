@@ -149,6 +149,7 @@ function App() {
           setUserEmail(res.email);
           setIsLoggedIn(true);
           navigate("/");
+          setToken(jwt);
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
