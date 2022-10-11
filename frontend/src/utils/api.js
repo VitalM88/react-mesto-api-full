@@ -18,7 +18,6 @@ class Api {
 
   getInitialCards(token) {
     return fetch(`${this._baseUrl}/cards`, {
-      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
