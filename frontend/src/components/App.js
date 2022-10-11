@@ -50,7 +50,7 @@ function App() {
         });
       api.getInitialCards(token)
         .then((cards) => {
-          setCards(cards.data);
+          setCards(cards);
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
