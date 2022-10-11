@@ -8,7 +8,7 @@ const NotFound = require('../errors/NotFound');
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.send({ data: users }))
+    .then((users) => res.send({ users }))
     .catch(next);
 };
 
@@ -18,7 +18,7 @@ module.exports.getUser = (req, res, next) => {
       if (!user) {
         next(new NotFound('Пользователь с id не найден'));
       } else {
-        res.send({ data: user });
+        res.send(user);
       }
     })
     .catch((err) => {
@@ -63,7 +63,7 @@ module.exports.updateUserInfo = (req, res, next) => {
   const userId = req.user._id;
   const { name, about } = req.body;
   User.findByIdAndUpdate(userId, { name, about }, { new: true, runValidators: true })
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequest('Некорректные данные пользователя'));
@@ -77,7 +77,7 @@ module.exports.updateUserAvatar = (req, res, next) => {
   const userId = req.user._id;
   const { avatar } = req.body;
   User.findByIdAndUpdate(userId, { avatar }, { new: true, runValidators: true })
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequest('Некорректная ссылка'));
