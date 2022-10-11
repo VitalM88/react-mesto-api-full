@@ -16,10 +16,13 @@ class Api {
 
   // получение карточек с сервера
 
-  getInitialCards() {
+  getInitialCards(token) {
     return fetch(`${this._baseUrl}/cards`, {
       credentials: 'include',
-
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+     }
     })
       .then(res => this._checkResponse(res));
   }
@@ -65,10 +68,12 @@ class Api {
 
   // получение информации о пользователе
 
-  getUserInfo() {
+  getUserInfo(token) {
     return fetch(`${this._baseUrl}/users/me`, {
-
-      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+     }
     })
       .then(res => this._checkResponse(res));
   }

@@ -33,20 +33,22 @@ function App() {
   const [isSuccessInfoToolTip, setIsSuccessInfoToolTip] = React.useState(null);
   const navigate = useNavigate();
 
+  const [token, setToken] = React.useState('');
+
   React.useEffect(() => {
     handleCheckToken();
   }, []);
 
   React.useEffect(() => {
     if (isLoggedIn) {
-      api.getUserInfo()
+      api.getUserInfo(token)
         .then((userData) => {
           setCurrentUser(userData);
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
         });
-      api.getInitialCards()
+      api.getInitialCards(token)
         .then((cards) => {
           setCards(cards);
           
@@ -148,6 +150,7 @@ function App() {
           setUserEmail(res.email);
           setIsLoggedIn(true);
           navigate("/");
+          setToken(res.token);
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
@@ -173,7 +176,7 @@ function App() {
       .then((res) => {
         localStorage.setItem("jwt", res.token);
         handleCheckToken();
-        
+        setToken(res.token);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -185,6 +188,7 @@ function App() {
     localStorage.removeItem("jwt");
     setUserEmail("");
     setIsSuccessInfoToolTip(null);
+    setToken('');
   }
 
   return (
