@@ -37,7 +37,7 @@ function App() {
 
   React.useEffect(() => {
     handleCheckToken();
-  }, []);
+  }, [isLoggedIn]);
 
   React.useEffect(() => {
     if (isLoggedIn) {
@@ -85,7 +85,7 @@ function App() {
   }
 
   function handleUpdateUser(userData) {
-    api.editUserInfo(userData)
+    api.editUserInfo(userData, token)
       .then((newUserData) => {
         setCurrentUser(newUserData);
         closeAllPopups();
@@ -97,7 +97,7 @@ function App() {
   }
 
   function handleUpdateAvatar(userData) {
-    api.editAvatar(userData)
+    api.editAvatar(userData, token)
       .then((newUserData) => {
         setCurrentUser({ ...currentUser, avatar: newUserData.avatar });
         closeAllPopups();
@@ -112,7 +112,7 @@ function App() {
 
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     
-    api.changeLikeCardStatus(card._id, !isLiked)
+    api.changeLikeCardStatus(card._id, !isLiked, token)
       .then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
       })
@@ -122,7 +122,7 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    api.deleteCard(card)
+    api.deleteCard(card, token)
       .then(() => {
         setCards((prevState) => prevState.filter((cardIterable) => cardIterable._id !== card._id));
       })
@@ -132,7 +132,7 @@ function App() {
   }
 
   function handleSubmit(newCard) {
-    api.addCard(newCard)
+    api.addCard(newCard, token)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();

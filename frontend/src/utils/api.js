@@ -22,7 +22,7 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
-     }
+      }
     })
       .then(res => this._checkResponse(res));
   }
@@ -30,11 +30,13 @@ class Api {
 
   // добавление карточки
 
-  addCard(data) {
+  addCard(data, token) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: this._headers,
-      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
       body: JSON.stringify({
         name: data.name,
         link: data.link
@@ -46,21 +48,25 @@ class Api {
 
   // удаление карточки
   
-  deleteCard(card) {
+  deleteCard(card, token) {
     return fetch(`${this._baseUrl}/cards/${card._id}`, {
       method: 'DELETE',
-      headers: this._headers,
-      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
     })
       .then(res => this._checkResponse(res));
   }
 
 
-  changeLikeCardStatus(cardId, likeStatus) {
+  changeLikeCardStatus(cardId, likeStatus, token) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: (likeStatus ? "PUT": "DELETE"),
-      headers: this._headers,
-      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
     })
       .then(res => this._checkResponse(res));
   }
@@ -81,11 +87,13 @@ class Api {
 
   // редактирование информации о пользователе
 
-  editUserInfo(data) {
+  editUserInfo(data, token) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
-      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
       body: JSON.stringify({
         name: data.name,
         about: data.about
@@ -97,11 +105,13 @@ class Api {
 
   // редактирование аватара пользователя 
 
-  editAvatar(data) {
+  editAvatar(data, token) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
-      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
       body: JSON.stringify({
         avatar: data.avatar
       })
