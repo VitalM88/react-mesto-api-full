@@ -48,13 +48,13 @@ function App() {
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
         });
-   //   api.getInitialCards(token)
-    //    .then((cards) => {
-    //      setCards(cards);
-    //    })
-    //    .catch((err) => {
-    //      console.log(`Ошибка: ${err}`);
-    //    });
+      api.getInitialCards(token)
+        .then((cards) => {
+          setCards(cards.data);
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        });
     }
   }, [isLoggedIn]);
 
