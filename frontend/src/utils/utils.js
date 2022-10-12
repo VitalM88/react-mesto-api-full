@@ -1,9 +1,5 @@
 const apiSettings = {
-    baseUrl: "http://api.mesto.vitalm.nomoredomains.icu",
+    baseUrl: "https://api.mesto.vitalm.nomoredomains.icu",
   };
 
-const authSettings = {
-    baseUrl: "http://api.mesto.vitalm.nomoredomains.icu",
-};
-  
-  export { apiSettings, authSettings };
+  export { apiSettings };
