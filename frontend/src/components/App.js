@@ -160,7 +160,7 @@ function App() {
   function handleRegister(data) {
     auth.register(data)
       .then((res) => {
-        setUserEmail(res.data.email);
+        setUserEmail(res.email);
         setIsSuccessInfoToolTip(true);
         setInfoToolTipPopupOpen(true);
       })
